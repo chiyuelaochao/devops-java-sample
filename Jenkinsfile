@@ -84,7 +84,8 @@ pipeline {
             input(id: 'deploy-to-production', message: 'deploy to production?')
             container('maven') {
               withCredentials([kubeconfigFile(credentialsId: env.KUBECONFIG_CREDENTIAL_ID, variable: 'KUBECONFIG')]) {
-                sh 'kubectl apply -f deploy/prod-ol/**'
+                sh 'kubectl apply -f deploy/prod-ol/devops-sample.yaml'
+                sh 'kubectl apply -f deploy/prod-ol/devops-sample-svc.yaml'
               }
             }
           }
